@@ -1,0 +1,28 @@
+version: "3"
+
+tasks:
+  install-deps:
+    aliases:
+      - deps
+    desc: "Install go packages and some binaries that this project depends on"
+    cmds:
+      - go mod tidy
+      - go get -u ./...
+      - go mod download
+      - pip install squawk-cli
+  
+  install-local-run:
+    aliases:
+      - air-install
+    desc: "Install Air CLI (Live reload for Go apps) using go install"
+    cmds:
+      - go install github.com/air-verse/air@latest
+  local-run:
+    aliases:
+      - air
+    desc: "Run auth service using Air CLI"
+    cmds:
+      - |
+        air \
+        --build.cmd "go build -o auth{{if eq OS `windows`}}.exe{{end}} cmd/auth/main.go" \
+        --build.bin "auth{{if eq OS `windows`}}.exe{{end}} --config=config/local.yaml"
