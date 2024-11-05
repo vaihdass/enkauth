@@ -1,0 +1,8 @@
+env: "local"
+storage:
+  dsn: "..."
+grpc:
+  port: 20002
+  timeout: 10h
+auth:
+  token_ttl: 1h

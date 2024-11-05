@@ -1,0 +1,8 @@
+env: "local/prod"
+storage:
+  dsn: "..."
+grpc:
+  port: 20002
+  timeout: 5s
+auth:
+  token_ttl: 1h
